@@ -1,22 +1,54 @@
 # Finance Tracker
 
-## Live Demo
+Aplikasi manajemen keuangan pribadi — pencatatan transaksi, budget, analisis pengeluaran, dan wishlist. Dibangun dengan Next.js + Recharts.
 
-🌐 https://97392e74.finance-tracker-dwi.pages.dev
+## 🌐 Live Demo
 
-finance-tracker project.
+**https://97392e74.finance-tracker-dwi.pages.dev**
 
-## Tech stack
+## 📋 Tech Stack
 
 Next.js
 
-## Getting started
+## 📁 Struktur Proyek
 
-See project files for setup instructions.
+```
+.wrangler/
+app/
+components/
+lib/
+public/
+types/
+LICENSE
+PRD.md
+README.md
+next-env.d.ts
+package-lock.json
+package.json
+postcss.config.mjs
+tailwind.config.ts
+tsconfig.json
+```
 
-## License
+## 🚀 Getting Started
 
-MIT — see [LICENSE](./LICENSE).
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+```
+
+> Untuk project HTML statis, cukup buka `index.html` di browser atau serve folder dengan static server.
+
+## 📊 Status Proyek
+
+Dalam pengembangan aktif.
+
+## 📄 Lisensi
+
+MIT — lihat [LICENSE](./LICENSE).
 
 ---
-_Maintained by dezzorigin._
+_Dikembangkan oleh **dezzorigin** (Nabil Aulia Dika)._
