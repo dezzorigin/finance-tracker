@@ -1,5 +1,9 @@
 # Finance Tracker
 
+## Live Demo
+
+🌐 https://97392e74.finance-tracker-dwi.pages.dev
+
 finance-tracker project.
 
 ## Tech stack
