@@ -7,7 +7,7 @@ tanpa server.
 
 ## 🌐 Live Demo
 
-**https://finance-tracker.pages.dev**
+**https://lacak-duit.pages.dev**
 
 ## ✨ Fitur
 

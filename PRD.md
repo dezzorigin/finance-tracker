@@ -8,7 +8,7 @@
 | Tech Stack | Next.js 14 (App Router, static export) + React 18 + TypeScript + Tailwind CSS + Recharts |
 | Status | Live |
 | Penanggung Jawab | Nabil Aulia Dika |
-| Live Demo | https://finance-tracker.pages.dev |
+| Live Demo | https://lacak-duit.pages.dev |
 | Repo | https://github.com/dezzorigin/finance-tracker |
 | Versi Dokumen | 2.0 |
 | Tanggal | 2026-11-18 |
