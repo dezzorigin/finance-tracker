@@ -2,11 +2,12 @@ import { formatCurrency } from '@/lib/utils';
 import { ArrowUpRight } from 'lucide-react';
 
 interface Props {
+ balance: number;
  expense: number;
  limit?: number;
 }
 
-export default function BudgetCard({ expense, limit = 5000000 }: Props) {
+export default function BudgetCard({ balance, expense, limit = 5000000 }: Props) {
  const percentage = Math.min(Math.round((expense / limit) * 100), 100);
 
  return (
@@ -26,10 +27,11 @@ export default function BudgetCard({ expense, limit = 5000000 }: Props) {
  </div>
 
  <div className="mb-6">
- <p className="text-zinc-400 text-xs font-medium mb-1">Total Balance</p>
+ <p className="text-zinc-400 text-xs font-medium mb-1">Total Saldo</p>
  <h2 className="text-3xl font-bold text-white tracking-tight">
- {formatCurrency(expense)}
+ {formatCurrency(balance)}
  </h2>
+ <p className="text-zinc-500 text-xs mt-1.5">Pengeluaran bulan ini: {formatCurrency(expense)}</p>
  </div>
 
  {/* Progress Minimalis */}

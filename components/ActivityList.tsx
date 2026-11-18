@@ -23,7 +23,7 @@ export default function ActivityList({ transactions, onDelete }: Props) {
  <div className="space-y-1">
  {transactions.length === 0 ? (
  <div className="text-center py-10">
- <p className="text-zinc-600 text-sm">No transactions yet.</p>
+ <p className="text-zinc-600 text-sm">Belum ada transaksi.</p>
  </div>
  ) : (
  transactions.map((t) => (

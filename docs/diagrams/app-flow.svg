@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="600" viewBox="0 0 880 600" role="img" aria-labelledby="t d">
+<title id="t">Alur aplikasi Finance Tracker</title>
+<desc id="d">Pengguna baru melihat landing SaaS, lalu masuk ke aplikasi bingkai ponsel dengan empat tab (Beranda, Target Tabungan, Analisis, Profil). Data tersimpan lokal di IndexedDB dan localStorage; tanpa server, tanpa akun. Static export Next.js di-deploy ke Cloudflare Pages.</desc>
+<style>
+  .bg { fill: #f8fafc; }
+  .card { fill: #ffffff; stroke: #e2e8f0; stroke-width: 1.5; rx: 16; }
+  .card-ink { fill: #0f172a; }
+  .card-mut { fill: #64748b; }
+  .accent { fill: #65a30d; }
+  .accent-soft { fill: #f7fee7; stroke: #d9f99d; stroke-width: 1.5; }
+  .ink { fill: #0f172a; font-family: Inter, system-ui, sans-serif; }
+  .mut { fill: #64748b; font-family: Inter, system-ui, sans-serif; }
+  .small { font-size: 12px; }
+  .mid { font-size: 13px; font-weight: 600; }
+  .big { font-size: 15px; font-weight: 800; }
+  .arrow { stroke: #65a30d; stroke-width: 2; fill: none; marker-end: url(#ah); }
+  .arrow-ghost { stroke: #94a3b8; stroke-width: 1.5; fill: none; stroke-dasharray: 5 4; marker-end: url(#ag); }
+</style>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#65a30d"/></marker>
+  <marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#94a3b8"/></marker>
+</defs>
+
+<rect class="bg" width="880" height="600" rx="8"/>
+
+<text x="40" y="44" class="ink" font-size="20" font-weight="800">Finance Tracker — alur aplikasi</text>
+<text x="40" y="66" class="mut small">Satu halaman Next.js, static export. Data tinggal di perangkat; tanpa akun, tanpa server.</text>
+
+<!-- Step 1: landing -->
+<g>
+  <rect class="card" x="40" y="92" width="180" height="86"/>
+  <rect class="accent" x="56" y="108" width="34" height="34" rx="9"/>
+  <text x="73" y="131" fill="#fff" font-size="16" font-weight="800" text-anchor="middle" font-family="Inter, system-ui, sans-serif">1</text>
+  <text x="100" y="122" class="ink mid">Landing SaaS</text>
+  <text x="100" y="140" class="mut small">navbar + hero + fitur</text>
+  <text x="56" y="164" class="mut small">CTA “Buka Aplikasi”</text>
+</g>
+
+<!-- Step 2: app shell -->
+<g>
+  <rect class="card" x="252" y="92" width="210" height="86"/>
+  <rect class="accent" x="268" y="108" width="34" height="34" rx="9"/>
+  <text x="285" y="131" fill="#fff" font-size="16" font-weight="800" text-anchor="middle" font-family="Inter, system-ui, sans-serif">2</text>
+  <text x="312" y="122" class="ink mid">Aplikasi (bingkai ponsel)</text>
+  <text x="312" y="140" class="mut small">frame 420px, 4 tab bawah</text>
+  <text x="268" y="164" class="mut small">pengguna kembali langsung masuk</text>
+</g>
+
+<path class="arrow" d="M220 135 H248"/>
+<path class="arrow-ghost" d="M357 178 C 357 220, 357 220, 130 220"/>
+
+<!-- Step 3: four tabs -->
+<g>
+  <rect class="card" x="40" y="240" width="180" height="86"/>
+  <rect class="accent-soft" x="56" y="256" width="34" height="34" rx="9"/>
+  <text x="73" y="279" fill="#65a30d" font-size="16" font-weight="800" text-anchor="middle" font-family="Inter, system-ui, sans-serif">H</text>
+  <text x="100" y="270" class="ink mid">Beranda</text>
+  <text x="100" y="288" class="mut small">saldo + budget + riwayat</text>
+  <text x="56" y="312" class="mut small">tambah / hapus transaksi</text>
+</g>
+<g>
+  <rect class="card" x="252" y="240" width="180" height="86"/>
+  <rect class="accent-soft" x="268" y="256" width="34" height="34" rx="9"/>
+  <text x="285" y="279" fill="#65a30d" font-size="16" font-weight="800" text-anchor="middle" font-family="Inter, system-ui, sans-serif">T</text>
+  <text x="312" y="270" class="ink mid">Target Tabungan</text>
+  <text x="312" y="288" class="mut small">wishlist + progres</text>
+  <text x="268" y="312" class="mut small">buat target, top-up</text>
+</g>
+<g>
+  <rect class="card" x="464" y="240" width="180" height="86"/>
+  <rect class="accent-soft" x="480" y="256" width="34" height="34" rx="9"/>
+  <text x="497" y="279" fill="#65a30d" font-size="16" font-weight="800" text-anchor="middle" font-family="Inter, system-ui, sans-serif">A</text>
+  <text x="524" y="270" class="ink mid">Analisis</text>
+  <text x="524" y="288" class="mut small">grafik 7 / 30 hari</text>
+  <text x="480" y="312" class="mut small">kategori teratas</text>
+</g>
+<g>
+  <rect class="card" x="676" y="240" width="164" height="86"/>
+  <rect class="accent-soft" x="692" y="256" width="34" height="34" rx="9"/>
+  <text x="709" y="279" fill="#65a30d" font-size="16" font-weight="800" text-anchor="middle" font-family="Inter, system-ui, sans-serif">P</text>
+  <text x="736" y="270" class="ink mid">Profil</text>
+  <text x="736" y="288" class="mut small">data diri (edit)</text>
+  <text x="692" y="312" class="mut small">export &amp; hapus data</text>
+</g>
+
+<path class="arrow" d="M357 178 V 208 H 130 V 236"/>
+<path class="arrow" d="M220 283 H248"/>
+<path class="arrow" d="M432 283 H460"/>
+<path class="arrow" d="M644 283 H672"/>
+
+<!-- Step 4: data layer -->
+<g>
+  <rect class="card" x="40" y="380" width="380" height="86"/>
+  <rect class="accent" x="56" y="396" width="34" height="34" rx="9"/>
+  <text x="73" y="419" fill="#fff" font-size="14" font-weight="800" text-anchor="middle" font-family="Inter, system-ui, sans-serif">DB</text>
+  <text x="100" y="410" class="ink mid">IndexedDB — finance-tracker-db</text>
+  <text x="100" y="428" class="mut small">store transactions (by-date) + wishlists</text>
+  <text x="56" y="452" class="mut small">CRUD lewat lib/db.ts (idb)</text>
+</g>
+<g>
+  <rect class="card" x="452" y="380" width="388" height="86"/>
+  <rect class="accent" x="468" y="396" width="34" height="34" rx="9"/>
+  <text x="485" y="419" fill="#fff" font-size="14" font-weight="800" text-anchor="middle" font-family="Inter, system-ui, sans-serif">LS</text>
+  <text x="512" y="410" class="ink mid">localStorage</text>
+  <text x="512" y="428" class="mut small">ft-entered (sudah masuk) + ft-profile</text>
+  <text x="468" y="452" class="mut small">profil diedit di tab Profil, header ikut berubah</text>
+</g>
+
+<path class="arrow-ghost" d="M130 326 V 376"/>
+<path class="arrow-ghost" d="M560 326 V 376"/>
+
+<!-- Step 5: deploy -->
+<g>
+  <rect class="card" x="40" y="500" width="800" height="64"/>
+  <text x="56" y="526" class="ink mid">Deploy — static export (output: 'export') → Cloudflare Pages</text>
+  <text x="56" y="548" class="mut small">next build menghasilkan folder out/ statis; favicon + ikon lokal; CI menjalankan tsc + build + Lighthouse.</text>
+</g>
+<path class="arrow-ghost" d="M440 466 V 496"/>
+
+</svg>

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Transaction, TransactionType } from '@/types/finance';
 import { X, ChevronDown } from 'lucide-react';
 
@@ -14,6 +14,16 @@ export default function AddTransactionModal({ isOpen, onClose, onSave }: Props) 
  const [type, setType] = useState<TransactionType>('expense');
  const [category, setCategory] = useState('Makanan');
  const [description, setDescription] = useState('');
+
+ // Reset form setiap kali modal dibuka — jangan bawa pilihan transaksi sebelumnya
+ useEffect(() => {
+   if (isOpen) {
+     setAmount('');
+     setType('expense');
+     setCategory('Makanan');
+     setDescription('');
+   }
+ }, [isOpen]);
 
  if (!isOpen) return null;
 

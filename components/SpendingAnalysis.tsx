@@ -89,8 +89,8 @@ export default function SpendingAnalysis({ transactions }: Props) {
  {/* Header Section */}
  <div className="px-6 mb-6 pt-2 flex justify-between items-center">
  <div>
- <h2 className="text-xl font-bold text-white">Analisis Pasar</h2>
- <p className="text-slate-500 text-xs">Realtime Spending Data</p>
+ <h2 className="text-xl font-bold text-white">Analisis Pengeluaran</h2>
+ <p className="text-slate-500 text-xs">Pemasukan vs pengeluaran</p>
  </div>
  <div className="bg-[#151A2D] p-1 rounded-lg border border-slate-800 flex">
  {(['week', 'month'] as const).map((r) => (

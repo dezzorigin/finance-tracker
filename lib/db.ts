@@ -14,7 +14,7 @@ interface FinanceDB extends DBSchema {
  };
 }
 
-const DB_NAME = 'finance-tracker-sann404';
+const DB_NAME = 'finance-tracker-db';
 
 export const initDB = async () => {
  // PENTING: Naikkan versi DB ke 2 untuk memicu upgrade

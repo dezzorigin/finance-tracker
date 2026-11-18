@@ -1,30 +1,32 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
- title: " Finance",
- description: "Minimalist Fintech",
- manifest: "/manifest.json",
- viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0",
- themeColor: "#09090B",
+  title: "Finance Tracker",
+  description:
+    "Aplikasi manajemen keuangan pribadi — pencatatan transaksi, budget bulanan, analisis pengeluaran, dan target tabungan. Data tersimpan lokal di perangkat, tanpa akun.",
+  manifest: "/manifest.json",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#09090B",
 };
 
 export default function RootLayout({
- children,
+  children,
 }: Readonly<{
- children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
- return (
- <html lang="id" className="dark">
- <body className={`${inter.className} bg-black min-h-screen flex justify-center items-center overflow-hidden`}>
- {/* Frame Desktop/Mobile */}
- <div className="w-full sm:max-w-[420px] bg-background h-[100dvh] sm:h-[95vh] sm:rounded-[32px] shadow-2xl relative flex flex-col border border-border overflow-hidden ring-1 ring-white/10">
- {children}
- </div>
- </body>
- </html>
- );
+  return (
+    <html lang="id" className="dark">
+      <body className={`${inter.className} bg-black min-h-screen`}>
+        {children}
+      </body>
+    </html>
+  );
 }

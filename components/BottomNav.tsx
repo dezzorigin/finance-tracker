@@ -15,16 +15,17 @@ export default function BottomNav({ currentTab, onTabChange, onAddClick }: Props
  <div className="bg-[#18181B] border border-zinc-800 rounded-[32px] px-6 py-3 shadow-2xl shadow-black/80 flex items-center justify-between gap-6 pointer-events-auto backdrop-blur-xl w-full max-w-[360px]">
 
  {/* KIRI: Home & Wishlist */}
- <button onClick={() => onTabChange('home')} className={`transition-all p-1 rounded-full group ${isActive('home')}`}>
+ <button aria-label="Beranda" onClick={() => onTabChange('home')} className={`transition-all p-1 rounded-full group ${isActive('home')}`}>
  <Home size={22} strokeWidth={currentTab === 'home' ? 2.5 : 2} className="group-hover:scale-110 transition-transform"/>
  </button>
 
- <button onClick={() => onTabChange('wishlist')} className={`transition-all p-1 rounded-full group ${isActive('wishlist')}`}>
+ <button aria-label="Target Tabungan" onClick={() => onTabChange('wishlist')} className={`transition-all p-1 rounded-full group ${isActive('wishlist')}`}>
  <Target size={22} strokeWidth={currentTab === 'wishlist' ? 2.5 : 2} className="group-hover:scale-110 transition-transform"/>
  </button>
 
  {/* TENGAH: Add Button */}
  <button
+ aria-label="Tambah"
  onClick={onAddClick}
  className="bg-primary text-black p-3.5 rounded-[18px] hover:scale-105 hover:-translate-y-1 transition-all -mt-8 border-[4px] border-background shadow-[0_8px_16px_-4px_#D9F15460] group relative overflow-hidden"
  >
@@ -33,11 +34,11 @@ export default function BottomNav({ currentTab, onTabChange, onAddClick }: Props
  </button>
 
  {/* KANAN: Stats & Profile */}
- <button onClick={() => onTabChange('stats')} className={`transition-all p-1 rounded-full group ${isActive('stats')}`}>
+ <button aria-label="Analisis" onClick={() => onTabChange('stats')} className={`transition-all p-1 rounded-full group ${isActive('stats')}`}>
  <BarChart2 size={22} strokeWidth={currentTab === 'stats' ? 2.5 : 2} className="group-hover:scale-110 transition-transform"/>
  </button>
 
- <button onClick={() => onTabChange('profile')} className={`transition-all p-1 rounded-full group ${isActive('profile')}`}>
+ <button aria-label="Profil" onClick={() => onTabChange('profile')} className={`transition-all p-1 rounded-full group ${isActive('profile')}`}>
  <User size={22} strokeWidth={currentTab === 'profile' ? 2.5 : 2} className="group-hover:scale-110 transition-transform"/>
  </button>
 
