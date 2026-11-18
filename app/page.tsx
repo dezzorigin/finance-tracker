@@ -5,6 +5,7 @@ import BudgetCard from '@/components/BudgetCard';
 import ActivityList from '@/components/ActivityList';
 import SpendingAnalysis from '@/components/SpendingAnalysis';
 import BottomNav from '@/components/BottomNav';
+import LandingPage from '@/components/LandingPage';
 
 // Komponen Halaman Baru
 import ProfilePage from '@/components/Profile/ProfilePage'; // <-- Import Profile
@@ -16,12 +17,16 @@ import {
  addTransaction, getTransactions, deleteTransaction,
  getWishlists, addWishlist, updateWishlist, deleteWishlist
 } from '@/lib/db';
+import { exportToCSV } from '@/lib/exportCSV';
 import WishlistCard from '@/components/Wishlist/WishlistCard';
 import AddWishlistModal from '@/components/Wishlist/AddWishlistModal';
 import WishlistDetailModal from '@/components/Wishlist/WishlistDetailModal';
 import { Target, Plus } from 'lucide-react';
 
+const ENTERED_KEY = 'ft-entered';
+
 export default function Home() {
+ const [entered, setEntered] = useState<boolean | null>(null);
  const [transactions, setTransactions] = useState<Transaction[]>([]);
  const [isTxModalOpen, setIsTxModalOpen] = useState(false);
 
@@ -38,13 +43,26 @@ export default function Home() {
  setWishlists(wishData.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
  };
 
- useEffect(() => { loadData(); }, []);
+ useEffect(() => {
+   try {
+     setEntered(localStorage.getItem(ENTERED_KEY) === '1');
+   } catch {
+     setEntered(false);
+   }
+ }, []);
+
+ useEffect(() => { if (entered) loadData(); }, [entered]);
 
  const stats = useMemo(() => {
  const income = transactions.filter(t => t.type === 'income').reduce((acc, t) => acc + t.amount, 0);
  const expense = transactions.filter(t => t.type === 'expense').reduce((acc, t) => acc + t.amount, 0);
  return { income, expense, total: income - expense };
  }, [transactions]);
+
+ const handleEnter = () => {
+   try { localStorage.setItem(ENTERED_KEY, '1'); } catch { /* abaikan */ }
+   setEntered(true);
+ };
 
  const handleAddTransaction = async (tx: Transaction) => { await addTransaction(tx); await loadData(); };
  const handleDeleteTransaction = async (id: number) => { if (confirm('Hapus transaksi?')) { await deleteTransaction(id); await loadData(); } };
@@ -58,30 +76,51 @@ export default function Home() {
  else setIsTxModalOpen(true);
  };
 
+ // Pindah tab menutup detail wishlist — modal tidak boleh menutupi tab lain
+ const handleTabChange = (tab: string) => {
+   setSelectedWishlist(null);
+   setActiveTab(tab);
+ };
+
+ const handleExport = () => { exportToCSV(transactions); };
+
+ // --- SEBELUM MASUK APLIKASI: LANDING PAGE ---
+ if (entered === null) return <div className="min-h-screen bg-black" />;
+ if (!entered) return <LandingPage onEnter={handleEnter} />;
+
  // --- RENDER HALAMAN PROFIL (FULL PAGE) ---
  if (activeTab === 'profile') {
  return (
- <main className="flex flex-col h-full w-full bg-background relative overflow-hidden">
- <ProfilePage />
- <BottomNav currentTab={activeTab} onTabChange={setActiveTab} onAddClick={handleAddClick} />
+ <div className="min-h-[100dvh] flex items-center justify-center overflow-hidden">
+ <main className="flex flex-col h-[100dvh] w-full sm:max-w-[420px] sm:h-[95vh] bg-background sm:rounded-[32px] shadow-2xl relative border border-border overflow-hidden ring-1 ring-white/10">
+ <ProfilePage transactions={transactions} />
+ <BottomNav currentTab={activeTab} onTabChange={handleTabChange} onAddClick={handleAddClick} />
  {/* Modal tetap dirender agar transisi smooth jika dipanggil */}
  <AddTransactionModal isOpen={isTxModalOpen} onClose={() => setIsTxModalOpen(false)} onSave={handleAddTransaction} />
  </main>
+ </div>
  );
  }
 
  // --- RENDER HALAMAN UTAMA (HOME, WISHLIST, STATS) ---
  return (
- <main className="flex flex-col h-full w-full bg-background relative overflow-hidden">
+ <div className="min-h-[100dvh] flex items-center justify-center overflow-hidden">
+ <main className="flex flex-col h-[100dvh] w-full sm:max-w-[420px] sm:h-[95vh] bg-background sm:rounded-[32px] shadow-2xl relative border border-border overflow-hidden ring-1 ring-white/10">
 
  {/* 1. FIXED HEADER */}
  {activeTab === 'home' && (
  <div className="shrink-0 z-20 bg-background w-full">
  <Header />
- <BudgetCard expense={stats.expense} limit={5000000} />
+ <BudgetCard balance={stats.total} expense={stats.expense} limit={5000000} />
  <div className="px-6 mt-2 pb-2 flex justify-between items-end border-b border-zinc-800/50">
  <h3 className="font-semibold text-white text-base">Riwayat Transaksi</h3>
- <button className="text-[10px] text-primary hover:underline uppercase tracking-wide">Lihat Semua</button>
+ <button
+ onClick={handleExport}
+ disabled={transactions.length === 0}
+ className="text-[10px] text-primary hover:underline uppercase tracking-wide disabled:opacity-40 disabled:no-underline"
+ >
+ Export CSV
+ </button>
  </div>
  </div>
  )}
@@ -135,7 +174,7 @@ export default function Home() {
  </div>
 
  {/* 3. NAVIGATION */}
- <BottomNav currentTab={activeTab} onTabChange={setActiveTab} onAddClick={handleAddClick} />
+ <BottomNav currentTab={activeTab} onTabChange={handleTabChange} onAddClick={handleAddClick} />
 
  {/* MODALS */}
  <AddTransactionModal isOpen={isTxModalOpen} onClose={() => setIsTxModalOpen(false)} onSave={handleAddTransaction} />
@@ -143,5 +182,6 @@ export default function Home() {
  <WishlistDetailModal item={selectedWishlist} onClose={() => setSelectedWishlist(null)} onUpdate={handleUpdateWishlist} onDelete={handleDeleteWishlist} />
 
  </main>
+ </div>
  );
 }
